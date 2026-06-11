@@ -1,15 +1,24 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AdminDashboard from "./pages/AdminDashboard";
 
+import ProtectedRoute from "./routes/ProtectedRoute";
+import AdminRoute from "./routes/AdminRoute";
+import HomeRedirect from "./routes/HomeRedirect";
+
 function App() {
 
     return (
         <BrowserRouter>
             <Routes>
+
+                <Route
+                    path="/"
+                    element={<HomeRedirect />}
+                />
 
                 <Route
                     path="/login"
@@ -23,12 +32,20 @@ function App() {
 
                 <Route
                     path="/dashboard"
-                    element={<Dashboard />}
+                    element={
+                        <ProtectedRoute>
+                            <Dashboard />
+                        </ProtectedRoute>
+                    }
                 />
 
                 <Route
                     path="/admin"
-                    element={<AdminDashboard />}
+                    element={
+                        <AdminRoute>
+                            <AdminDashboard />
+                        </AdminRoute>    
+                    }
                 />
 
             </Routes>
