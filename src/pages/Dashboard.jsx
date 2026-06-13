@@ -16,9 +16,8 @@ export default function Dashboard() {
             <p>Role: {role}</p>
 
             <button onClick={logout}>
-                Logout
+                Logouts
             </button>
-            
         </div>
     )
 }
