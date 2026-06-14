@@ -10,6 +10,8 @@ export default function UserModalForm({
     name: "",
     email: "",
     password: "",
+    age: "",
+    address: "",
     role: "USER",
   });
 
@@ -20,7 +22,9 @@ export default function UserModalForm({
       setForm({
         name: initialData.name,
         email: initialData.email,
-        password: "",
+        password: initialData.password,
+        age: initialData.age,
+        address: initialData.address,
         role: initialData.role,
       });
     }
@@ -36,8 +40,11 @@ export default function UserModalForm({
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    console.log("Sending:", form);
+
     try {
       if (isEdit) {
+        console.log(form);
         await api.put(`/admin/users/${initialData.id}`, form);
       } else {
         await api.post("/admin/users", form);
@@ -83,6 +90,22 @@ export default function UserModalForm({
           className="w-full p-2 rounded bg-slate-800"
         />
       )}
+
+      <input 
+        name="age"
+        value={form.age}
+        onChange={handleChange}
+        placeholder="Age"
+        className="w-full p-2 rounded bg-slate-800"
+      />
+
+      <input 
+        name="address"
+        type="text"
+        onChange={handleChange}
+        placeholder="Address"
+        className="w-full p-2 rounded bg-slate-800"
+      />
 
       <select
         name="role"
