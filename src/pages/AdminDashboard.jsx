@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useUsers } from "../hooks/useUsers";
-import { Modal } from "../components/users/UserModal";
-import UserModalForm from "../components/users/UserModalForm";
+import { useUsers } from "../utils/hooks/useUsers";
+import UserModalForm from "../components/users/UserModal";
 import UserTable from "../components/users/UserTable";
+import Modal from "../components/reusable/Modal";
 import { useToast } from "../utils/ui/useToast";
 import { Toast } from "../utils/ui/toast";
 
@@ -40,6 +40,7 @@ export default function AdminDashboard() {
       <UserTable
         users={users}
         onEdit={(user) => {
+          console.log("Editing user:", user);
           setSelectedUser(user);
           setOpen(true);
         }}
